@@ -1,7 +1,7 @@
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 2, description: "charger", quantity: 1, packed: true },
+  { id: 3, description: "charger", quantity: 1, packed: true },
 ];
 
 export default function App() {
@@ -20,13 +20,19 @@ function Logo() {
 }
 
 function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
-    <form className="add-form">
+    <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
       <select>
-        <option value={1}>1</option>
-        <option value={1}>2</option>
-        <option value={1}>3</option>
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+          <option value={num} key={num}>
+            {num}
+          </option>
+        ))}
       </select>
       <input text="text" placeholder="Item..." />
       <button>Add</button>
@@ -39,7 +45,7 @@ function PackingList() {
     <div className="list">
       <ul>
         {initialItems.map((item) => (
-          <Item item={item} />
+          <Item item={item} key={item.id} />
         ))}
       </ul>
     </div>
@@ -64,3 +70,12 @@ function Stats() {
     </footer>
   );
 }
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+
+// Create an Array with value 0 to 20:
+// Array.from({ length: 20 }, (_, i) => i + 1);
+
+// onSubmit | onCLick ===> for form and buttons

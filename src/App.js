@@ -21,9 +21,16 @@ function Logo() {
 
 function Form() {
   return (
-    <div className="add-form">
+    <form className="add-form">
       <h3>What do you need for your 😍 trip?</h3>
-    </div>
+      <select>
+        <option value={1}>1</option>
+        <option value={1}>2</option>
+        <option value={1}>3</option>
+      </select>
+      <input text="text" placeholder="Item..." />
+      <button>Add</button>
+    </form>
   );
 }
 
@@ -42,7 +49,7 @@ function PackingList() {
 function Item({ item }) {
   return (
     <li>
-      <span>
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
       <button>❌</button>
